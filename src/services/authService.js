@@ -35,4 +35,22 @@ export const authService = {
     return response.data;
   },
 
+
+  // Login BENJA para pruebas (NO TOCAR)
+  devLogin: () => {
+    const fakeUser = {
+      id: 1,
+      name: "Dev User",
+      email: "dev@test.com",
+      role: "admin"
+    };
+
+    const fakeToken = "dev-token";
+
+    localStorage.setItem('token', fakeToken);
+    localStorage.setItem('user', JSON.stringify(fakeUser));
+
+    return { token: fakeToken, user: fakeUser };
+  },
+
 };

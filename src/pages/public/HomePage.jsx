@@ -24,6 +24,13 @@ export const HomePage = () => {
           >
             Registrarse
           </button>
+
+          <p className='text-center text-sm text-gray-600 mt-4'>
+        ¿Ingreso?{' '}
+        <a href='/dashboard' className='text-blue-600 hover:underline'>
+          Inicia sesión de prueba (Dev Login)
+        </a>
+      </p>
         </div>
       </div>
     </div>
