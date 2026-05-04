@@ -11,4 +11,4 @@ export const MainLayout = () => {
       </main>
     </div>
   );
-};
+}; 
