@@ -4,7 +4,7 @@ import { Footer } from '../components/common/Footer';
 
 export const AuthLayout = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col transition-colors duration-200">
       {/* Navbar arriba también en login/register */}
       <Navbar />
 

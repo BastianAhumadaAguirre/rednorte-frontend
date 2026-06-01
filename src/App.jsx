@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'sonner';
 
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 import { PrivateRoute } from './components/common/PrivateRoute';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 
@@ -51,6 +53,8 @@ const PageLoader = () => (
 
 function App() {
   return (
+    <ThemeProvider>
+    <LanguageProvider>
     <AuthProvider>
       <BrowserRouter>
         <Toaster position="top-right" richColors />
@@ -144,6 +148,8 @@ function App() {
         </ErrorBoundary>
       </BrowserRouter>
     </AuthProvider>
+    </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

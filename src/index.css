@@ -1,6 +1,26 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
 
+/* Class-based dark mode — toggled via .dark on <html> */
+@variant dark (&:is(.dark *));
+
+/* ─── CSS custom properties ────────────────────────────────────────────────── */
+:root {
+  --color-background-primary: #f9fafb;
+  --color-text-primary:       #111827;
+  --color-text-secondary:     #4b5563;
+  --color-text-tertiary:      #9ca3af;
+  --color-border-tertiary:    #e5e7eb;
+}
+
+.dark {
+  --color-background-primary: #111827;
+  --color-text-primary:       #f9fafb;
+  --color-text-secondary:     #d1d5db;
+  --color-text-tertiary:      #6b7280;
+  --color-border-tertiary:    #374151;
+}
+
 @layer base {
   body {
     @apply bg-gray-50 text-gray-900 antialiased;
@@ -13,8 +33,107 @@
   }
   .card {
     @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 p-6;
+    @apply dark:bg-gray-800 dark:shadow-gray-900/50 dark:text-gray-100;
   }
   .input {
     @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200;
+    @apply dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400;
   }
 }
+
+/* ─── Global dark mode overrides ──────────────────────────────────────────────
+   These target existing Tailwind classes throughout ALL pages/components.
+   Selectors like .dark .bg-white have higher specificity than .bg-white alone,
+   so they win without !important.
+──────────────────────────────────────────────────────────────────────────────── */
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Backgrounds */
+.dark .bg-white          { background-color: #1f2937; } /* gray-800 */
+.dark .bg-gray-50        { background-color: #111827; } /* gray-900 */
+.dark .bg-gray-100       { background-color: #1f2937; } /* gray-800 */
+.dark .bg-gray-200       { background-color: #374151; } /* gray-700 */
+
+/* Text */
+.dark .text-gray-900     { color: #f9fafb; }  /* gray-50  */
+.dark .text-gray-800     { color: #f3f4f6; }  /* gray-100 */
+.dark .text-gray-700     { color: #e5e7eb; }  /* gray-200 */
+.dark .text-gray-600     { color: #d1d5db; }  /* gray-300 */
+.dark .text-gray-500     { color: #9ca3af; }  /* gray-400 */
+.dark .text-gray-400     { color: #6b7280; }  /* gray-500 */
+
+/* Borders */
+.dark .border-gray-100   { border-color: #374151; } /* gray-700 */
+.dark .border-gray-200   { border-color: #374151; } /* gray-700 */
+.dark .border-gray-300   { border-color: #4b5563; } /* gray-600 */
+
+/* Divide lines */
+.dark .divide-gray-100 > * + * { border-color: #374151; }
+.dark .divide-gray-200 > * + * { border-color: #374151; }
+
+/* Hover backgrounds */
+.dark .hover\:bg-gray-50:hover  { background-color: #374151; }
+.dark .hover\:bg-gray-100:hover { background-color: #374151; }
+.dark .hover\:bg-white:hover    { background-color: #374151; }
+
+/* Focus ring */
+.dark .focus\:ring-gray-200:focus { --tw-ring-color: #374151; }
+
+/* Shadows in dark mode */
+.dark .shadow-sm  { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.5); }
+.dark .shadow     { box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5); }
+.dark .shadow-md  { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5); }
+.dark .shadow-lg  { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5); }
+
+/* Status / badge backgrounds */
+.dark .bg-amber-100   { background-color: #451a03; }
+.dark .bg-amber-50    { background-color: #2c1000; }
+.dark .bg-blue-100    { background-color: #1e3a5f; }
+.dark .bg-blue-50     { background-color: #172554; }
+.dark .bg-green-100   { background-color: #052e16; }
+.dark .bg-green-50    { background-color: #022c16; }
+.dark .bg-red-100     { background-color: #450a0a; }
+.dark .bg-red-50      { background-color: #3b0606; }
+.dark .bg-purple-100  { background-color: #2e1065; }
+.dark .bg-yellow-100  { background-color: #422006; }
+.dark .bg-indigo-100  { background-color: #1e1b4b; }
+.dark .bg-teal-100    { background-color: #042f2e; }
+
+/* Status / badge text */
+.dark .text-amber-800  { color: #fde68a; }
+.dark .text-amber-700  { color: #fcd34d; }
+.dark .text-amber-600  { color: #f59e0b; }
+.dark .text-blue-800   { color: #bfdbfe; }
+.dark .text-blue-700   { color: #93c5fd; }
+.dark .text-blue-600   { color: #60a5fa; }
+.dark .text-green-800  { color: #bbf7d0; }
+.dark .text-green-700  { color: #86efac; }
+.dark .text-green-600  { color: #4ade80; }
+.dark .text-red-800    { color: #fecaca; }
+.dark .text-red-700    { color: #fca5a5; }
+.dark .text-red-600    { color: #f87171; }
+.dark .text-red-500    { color: #f87171; }
+.dark .text-purple-800 { color: #e9d5ff; }
+.dark .text-yellow-800 { color: #fef08a; }
+.dark .text-indigo-800 { color: #c7d2fe; }
+.dark .text-teal-800   { color: #99f6e4; }
+
+/* Input / select elements */
+.dark input:not([class]),
+.dark select:not([class]),
+.dark textarea:not([class]) {
+  background-color: #374151;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #6b7280;
+}
+
+/* Table rows */
+.dark .bg-white tbody tr:hover { background-color: #374151; }
